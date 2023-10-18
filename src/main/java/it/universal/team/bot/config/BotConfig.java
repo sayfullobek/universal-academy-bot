@@ -1,6 +1,9 @@
-package config;
+package it.universal.team.bot.config;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public interface BotConfig {
 
