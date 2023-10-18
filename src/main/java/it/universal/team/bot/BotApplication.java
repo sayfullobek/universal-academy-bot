@@ -78,16 +78,28 @@ public class BotApplication extends TelegramWebhookBot implements LongPollingBot
             System.out.println(text);
 
             switch (text) {
-                case "Asosiy bo'lim", "Основная часть", "/start" -> startBtns(sendMessage, chatId);
-                case "Rus Tili" -> {
+                case "Asosiy bo'lim":
+                    startBtns(sendMessage, chatId);
+                    break;
+                case "Основная часть":
+                    startBtns(sendMessage, chatId);
+                    break;
+                case "/start":
+                    startBtns(sendMessage, chatId);
+                    break;
+                case "Rus Tili": {
                     BotConfig.language.replace(chatId, "ru");
                     startBtns(sendMessage, chatId);
+                    break;
                 }
-                case "Узбекский язык" -> {
+                case "Узбекский язык": {
                     BotConfig.language.replace(chatId, "uz");
                     startBtns(sendMessage, chatId);
+                    break;
                 }
-                default -> sendMessage.setText(BotConfig.language.get(chatId).equals("uz") ? "Mavjud emas" : "Не найдено");
+                default:
+                    sendMessage.setText(BotConfig.language.get(chatId).equals("uz") ? "Mavjud emas" : "Не найдено");
+                    break;
             }
             try {
                 execute(sendMessage);
@@ -103,7 +115,7 @@ public class BotApplication extends TelegramWebhookBot implements LongPollingBot
             sendMessage.setChatId(chatId);
             sendMessage.setText("Universal academy");
             switch (data) {
-                case "biz haqimizda" -> {
+                case "biz haqimizda": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/Universal_academy.jpg");
                     sendPhoto(
                             chatId, BotConfig.language.get(chatId).equals("uz")
@@ -112,8 +124,9 @@ public class BotApplication extends TelegramWebhookBot implements LongPollingBot
                                     "Получите качественное и эффективное образование вместе с нами" +
                                             "в нашем учебном центре преподают преподаватели с многолетним опытом работы" +
                                             "Получите отличные результаты, обучаясь на наших курсах", file);
+                    break;
                 }
-                case "kurslar" -> {
+                case "kurslar": {
                     InlineKeyboardButton button = new InlineKeyboardButton();
                     button.setText(BotConfig.language.get(chatId).equals("uz") ? "Web dasturlash" : "Веб-программирование");
                     button.setCallbackData("dasturlash");
@@ -170,12 +183,14 @@ public class BotApplication extends TelegramWebhookBot implements LongPollingBot
                     inlineKeyboardMarkup.setKeyboard(rowCollection);
 
                     sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+                    break;
                 }
-                case "bog'lanish" -> {
+                case "bog'lanish": {
                     sendMsg(chatId, BotConfig.language.get(chatId).equals("uz") ? "Murojat uchun" : "Для справки");
                     connectBtns(sendMessage, chatId);
+                    break;
                 }
-                case "dasturlash" -> {
+                case "dasturlash": {
                     sendMessage.setChatId(chatId);
                     File file = new File("src/main/java/it/universal/team/bot/photos/web programming.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Web dasturlash kursimiz 2ga bo'linadi" : "Наш курс веб-программирования разделен на 2", file);
@@ -205,40 +220,51 @@ public class BotApplication extends TelegramWebhookBot implements LongPollingBot
                     inlineKeyboardMarkup.setKeyboard(rowCollection);
 
                     sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+                    break;
                 }
-                case "grafik" -> {
+                case "grafik": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/graphic design.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Siz Grafik dizayn kursimizda Adobe Photoshop, Adobe Illustrator, ColorDraw, Figma, Canva kabi dasturlarda ishlashni o'rganasiz, bizning kursimiz 6oy davom etadi" : "«На нашем курсе графического дизайна вы научитесь работать с такими программами, как Adobe Photoshop, Adobe Illustrator, ColorDraw, Figma, Canva, наш курс длится 6 месяцев»", file);
+                    break;
                 }
-                case "arxitektura" -> {
+                case "arxitektura": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/architecture.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Siz Arxitektura va modeling kursimizda AutoCAD, 3DStudio MAX, lumion va Blender dasturlarida ishlashni o'rganasiz. bu kursimiz 10oy davom etadi" : "На нашем курсе «Архитектура и моделирование» вы научитесь работать в AutoCAD, 3DStudio MAX, Lumion и Blender. этот курс длится 10 месяцев", file);
+                    break;
                 }
-                case "dizayn" -> {
+                case "dizayn": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/web design.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Web dizayn kursida siz UI & UXni o'rganamiz, BU kursimiz 2oy davom etadi" : "На курсе веб-дизайна вы изучите UI и UX, ЭТОТ курс длится 2 месяца.", file);
+                    break;
                 }
-                case "smm" -> {
+                case "smm": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/smm.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Smm Mobilografika kursimizda telefonda montaj, instagram, telegram yurgizish, reklamalarni o'rgatamiz. bu kursimiz 2oy davom etadi" : "На нашем курсе Smm Mobilography мы обучаем редактированию телефона, Instagram, Telegram и рекламе. этот курс длится 2 месяца", file);
+                    break;
                 }
-                case "savodxonlik" -> {
+                case "savodxonlik": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/computer savodxonligi.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Kompyuter savodxonligida siz Kompyuterda ishlashni va office dasturlarini o'rganasiz, bu kursimiz 2oy davom etadi" : "По компьютерной грамотности вы научитесь работать на компьютере и пользоваться офисными программами, курс длится 2 месяца.", file);
+                    break;
                 }
-                case "kids" -> {
+                case "kids": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/kids.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "I.T. kids kursimiz yosh bolalar uchun mo'ljallangan. Bu kursimiz 7oy davom etadi" : "ЭТО. Наш детский курс предназначен для детей младшего возраста. Этот курс длится 7 месяцев", file);
+                    break;
                 }
-                case "full" -> {
+                case "full": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/full stack.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Full stack dasturlash kursimizda siz backend, database va frontendni o'rganasiz, backendda java, node.js, python dasturlash tillaridan birini tanlab o'qishingiz mumkin, bu kursimiz 10oy davom etadi" : "На нашем полнофункциональном курсе программирования вы изучите бэкенд, базу данных и фронтенд, вы можете выбрать один из языков программирования Java, Node.js, python в бэкенде, этот курс длится 10 месяцев.", file);
+                    break;
                 }
-                case "frontend" -> {
+                case "frontend": {
                     File file = new File("src/main/java/it/universal/team/bot/photos/front end.png");
                     sendPhoto(chatId, BotConfig.language.get(chatId).equals("uz") ? "Frontend kursida siz saytlarning tashqi ko'rinishini qilishni o'rganasiz, bu kursimiz 6oy davom etadi" : "На курсе Frontend вы научитесь создавать веб-сайты, этот курс длится 6 месяцев.", file);
+                    break;
                 }
-                default -> sendMsg(chatId, BotConfig.language.get(chatId).equals("uz") ? "bunday bo'lim yo'q" : "нет такого раздела");
+                default:
+                    sendMsg(chatId, BotConfig.language.get(chatId).equals("uz") ? "bunday bo'lim yo'q" : "нет такого раздела");
+                    break;
             }
             try {
                 execute(sendMessage);
@@ -348,7 +374,7 @@ public class BotApplication extends TelegramWebhookBot implements LongPollingBot
 
         //end buttons
 
-        // buttons ->   1-biz haqimizda, 2-Kurslar, 3-Bizning sayt, 4-biz bilan bog'lanish,
+        // buttons:   1-biz haqimizda, 2-Kurslar, 3-Bizning sayt, 4-biz bilan bog'lanish,
 
         //row
         List<InlineKeyboardButton> row = new LinkedList<>();
